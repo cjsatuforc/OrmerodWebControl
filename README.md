@@ -1,7 +1,9 @@
 OrmerodWebControl
 =================
 
-Web Control Interface for the RepRapPro Ormerod
+Web Control Interface for the RepRapPro Ormerod and other RepRaps that support it.
+
+Derived from iamburny's on Github here: https://github.com/iamburny/OrmerodWebControl - much credit to him.
 
 reprap.remote.htm - javascript links point to external CDN's, NO editing required, just rename to reprap.htm and copy to "www" directory on your Ormerod's Duet SD card.
 
@@ -23,8 +25,4 @@ All of the above should be stored on a web server local to you.
 
 Dont forget this is a Beta release, some features are missing, some may not work, I recommend you keep a close eye on your Ormerod while operating it via this interface as it has not been fully tested yet.
 
-Any feed back is appreciated here http://forums.reprap.org/read.php?340,290811
-
-thanks
-
-iamburny (aka. Matt)
+RepRapPro Ltd
