@@ -116,11 +116,11 @@ $('div#bedTemperature').on('click', 'a#bedTempLink', function() {
     $.askElle('gcode', "M140 S" + $(this).text());
 });
 $('div#headTemperature button#setHeadTemp').on('click', function() {
-        $.askElle('gcode', "G10 P0 S" + $('input#headTempInput').val() + "\nT1");
+        $.askElle('gcode', "G10 P1 S" + $('input#headTempInput').val() + "\nT1");
 });
 $('div#headTemperature').on('click', 'a#headTempLink', function() {
     $('input#headTempInput').val($(this).text());
-    $.askElle('gcode', "G10 P0 S" + $(this).text() + "\nT1");
+    $.askElle('gcode', "G10 P1 S" + $(this).text() + "\nT1");
 });
 $('input#bedTempInput').keydown(function(event) {
     if (event.which === 13) {
@@ -131,7 +131,7 @@ $('input#bedTempInput').keydown(function(event) {
 $('input#headTempInput').keydown(function(event) {
     if (event.which === 13) {
         event.preventDefault();
-        $.askElle('gcode', "G10 P0 S" + $(this).val() + "\nT1");
+        $.askElle('gcode', "G10 P1 S" + $(this).val() + "\nT1");
     }
 });
 $('div#bedTemperature ul').on('click', 'a#addBedTemp', function() {
@@ -232,7 +232,7 @@ $('div#panicBtn button').on('click', function() {
             btnVal = "M1";
             //switch off heaters
             $.askElle('gcode', "M140 S0"); //bed off
-            $.askElle('gcode', "G10 P0 S0\nT1"); //head 0 off
+            $.askElle('gcode', "G10 P1 S0\nT1"); //head 0 off
             resetLayerData();
         case "M24":
             //resume
