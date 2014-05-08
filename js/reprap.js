@@ -712,12 +712,20 @@ function updatePage() {
             message('danger', 'Unknown Poll State : ' + status.poll[0]);
         }
 
-        $('span#bedTemp').text(status.poll[1]);
+/*        $('span#bedTemp').text(status.poll[1]);
         $('span#headTemp').text(status.poll[2]);
         $('span#Xpos').text(status.poll[3]);
         $('span#Ypos').text(status.poll[4]);
         $('span#Zpos').text(status.poll[5]);
         $('span#Epos').text(status.poll[6]);
+        $('span#probe').text(status.probe);
+*/
+        $('span#bedTemp').text(status.poll[5]);
+        $('span#headTemp').text(status.poll[6]);
+        $('span#Xpos').text(status.poll[1]);
+        $('span#Ypos').text(status.poll[2]);
+        $('span#Zpos').text(status.poll[3]);
+        $('span#Epos').text(status.poll[4]);
         $('span#probe').text(status.probe);
 
         //Temp chart stuff
