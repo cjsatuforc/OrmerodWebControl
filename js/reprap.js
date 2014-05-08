@@ -729,8 +729,8 @@ function updatePage() {
         $('span#probe').text(status.probe);
 
         //Temp chart stuff
-        chartData[0].push(parseFloat(status.poll[1]));
-        chartData[1].push(parseFloat(status.poll[2]));
+        chartData[0].push(parseFloat(status.poll[5]));
+        chartData[1].push(parseFloat(status.poll[6]));
         chart.setData(parseChartData());
         chart.draw();
     }
