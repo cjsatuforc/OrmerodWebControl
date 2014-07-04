@@ -684,7 +684,8 @@ function updatePage() {
             enableButtons('panic');
             disableButtons("head");
             disableButtons("gfilelist");
-            currentLayer = whichLayer(status.poll[5]);
+            //currentLayer = whichLayer(status.poll[5]);
+				currentLayer = whichLayer(status.poll[3]);
             if (isNumber(objHeight)) {
                 layerCount = Math.ceil(objHeight / storage.get('settings','layerHeight'));
                 setProgress(Math.floor((currentLayer / layerCount) * 100), 'print', currentLayer, layerCount);
