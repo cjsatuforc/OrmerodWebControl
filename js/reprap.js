@@ -656,7 +656,7 @@ function updatePage() {
     var status = $.askElle("poll", "");
     if (!status || !polling) {
         $('button#connect').removeClass('btn-success').addClass('btn-danger');
-        $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text("Disconnected");
+        $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text(status.reprap_name + "Disconnected");
         if (polling) {
             message('danger', "<strong>Warning!</strong> Ormerod webserver is probably broken, power cycle/reset your Duet Board :(");
             $('button#connect').text("Retrying");
@@ -696,20 +696,20 @@ function updatePage() {
         } else if (status.poll[0] === "I" && !paused ) {
             //inactive, not printing
             printing = false;
-            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text("Ready :)");
+            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text(status.reprap_name + "Ready :)");
             disableButtons("panic");
             enableButtons('head');
             enableButtons("gfilelist");
         } else if (status.poll[0] === "I" && paused) {
             //paused
             printing = true;
-            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text("Paused");
+            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text(status.reprap_name + "Paused");
             enableButtons('panic');
             enableButtons('head');
         } else {
             //unknown state
             webPrinting = printing = paused = false;
-            $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text("Error!");
+            $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text(status.reprap_name + "Error!");
             message('danger', 'Unknown Poll State : ' + status.poll[0]);
         }
 
