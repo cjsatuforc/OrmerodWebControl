@@ -656,7 +656,7 @@ function updatePage() {
     var status = $.askElle("poll", "");
     if (!status || !polling) {
         $('button#connect').removeClass('btn-success').addClass('btn-danger');
-        $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text(status.reprap_name + " is Disconnected.");
+        $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text("RepRap machine is disconnected.");
         if (polling) {
             message('danger', "<strong>Warning!</strong> Ormerod webserver is probably broken, power cycle/reset your Duet Board :(");
             $('button#connect').text("Retrying");
@@ -680,7 +680,8 @@ function updatePage() {
             //printing
             printing = true;
             objHeight = $('input#objheight').val();
-            $('button#printing').removeClass('btn-danger').removeClass('btn-warning').addClass('btn-success').text("Active");
+				name = status.reprap_name;
+            $('button#printing').removeClass('btn-danger').removeClass('btn-warning').addClass('btn-success').text(name + " is printing.");
             enableButtons('panic');
             disableButtons("head");
             disableButtons("gfilelist");
@@ -696,20 +697,20 @@ function updatePage() {
         } else if (status.poll[0] === "I" && !paused ) {
             //inactive, not printing
             printing = false;
-            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text(status.reprap_name + " is Ready.");
+            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text(name + " is ready.");
             disableButtons("panic");
             enableButtons('head');
             enableButtons("gfilelist");
         } else if (status.poll[0] === "I" && paused) {
             //paused
             printing = true;
-            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text(status.reprap_name + " is Paused.");
+            $('button#printing').removeClass('btn-danger').removeClass('btn-success').addClass('btn-warning').text(name + " is paused.");
             enableButtons('panic');
             enableButtons('head');
         } else {
             //unknown state
             webPrinting = printing = paused = false;
-            $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text(status.reprap_name + " experienced an Error!");
+            $('button#printing').removeClass('btn-warning').removeClass('btn-success').addClass('btn-danger').text(name + " experienced an error!");
             message('danger', 'Unknown Poll State : ' + status.poll[0]);
         }
 
