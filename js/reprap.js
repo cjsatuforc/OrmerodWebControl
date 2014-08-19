@@ -675,12 +675,14 @@ function updatePage() {
             parseResponse(status.resp);
         }
         buffer = status.buff;
+		  name = status.reprap_name;
+        if(name == "")
+			name = "RepRap";
         homedWarning(status.hx,status.hy,status.hz);
         if (status.poll[0] === "P" || (webPrinting && !paused)) {
             //printing
             printing = true;
             objHeight = $('input#objheight').val();
-				name = status.reprap_name;
             $('button#printing').removeClass('btn-danger').removeClass('btn-warning').addClass('btn-success').text(name + " is printing.");
             enableButtons('panic');
             disableButtons("head");
