@@ -675,8 +675,10 @@ function updatePage() {
             parseResponse(status.resp);
         }
         buffer = status.buff;
-		  name = status.reprap_name;
-        if(name == "")
+		  
+        if(status.reprap_name != null)
+			name = status.reprap_name;
+		  else
 			name = "RepRap";
         homedWarning(status.hx,status.hy,status.hz);
         if (status.poll[0] === "P" || (webPrinting && !paused)) {
