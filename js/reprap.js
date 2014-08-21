@@ -89,7 +89,7 @@ $(document).ready(function() {
     
     if (getHTMLver() < ver) {
         //pop message
-        modalMessage("Update! v"+ver+" is Available", "The version of reprap.htm on you Duet SD card is "+getHTMLver()+", the latest version is "+ver+", to ensure compatibility and with the latest javascript code, new features, and correct functionality it is highly recommended that you upgrade. The newest reprap.htm can be found at <a href='https://github.com/iamburny/OrmerodWebControl'>https://github.com/iamburny/OrmerodWebControl</a>", true);
+        modalMessage("Update! v"+ver+" is Available", "The version of reprap.htm on you Duet SD card is "+getHTMLver()+", the latest version is "+ver+", to ensure compatibility and with the latest javascript code, new features, and correct functionality it is highly recommended that you upgrade. The newest reprap.htm can be found at <a href='https://github.com/reprappro/RepRapFirmware'>https://github.com/reprappro/RepRapFirmware</a>", true);
     }
     
 });
@@ -680,6 +680,12 @@ function updatePage() {
 			name = status.reprap_name;
 		  else
 			name = "RepRap";
+
+        if(status.fraction_printed != null)
+			fraction = status.fraction_printed;
+		  else
+			fraction = 0.0;
+
         homedWarning(status.hx,status.hy,status.hz);
         if (status.poll[0] === "P" || (webPrinting && !paused)) {
             //printing
@@ -693,9 +699,10 @@ function updatePage() {
 				currentLayer = whichLayer(status.poll[3]);
             if (isNumber(objHeight)) {
                 layerCount = Math.ceil(objHeight / storage.get('settings','layerHeight'));
-                setProgress(Math.floor((currentLayer / layerCount) * 100), 'print', currentLayer, layerCount);
+                //setProgress(Math.floor((currentLayer / layerCount) * 100), 'print', currentLayer, layerCount);
+					 setProgress(Math.floor(fraction * 100), 'print', currentLayer, layerCount);
             } else {
-                setProgress(0, 'print', 0, 0);
+                setProgress(Math.floor(fraction * 100), 'print', 0, 0);
             }
             layers(currentLayer);
         } else if (status.poll[0] === "I" && !paused ) {
